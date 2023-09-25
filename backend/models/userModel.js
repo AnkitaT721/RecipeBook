@@ -4,51 +4,59 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Please Enter Your Name"],
+    maxLength: [30, "Name cannot exceed 30 characters"],
+    minLength: [4, "Name should have more than 4 characters"],
+  },
 
-    name: {
-        type: String,
-        required: [true, "Please Enter Your Name"],
-        maxLength: [30, "Name cannot exceed 30 characters"],
-        minLength: [4, "Name should have more than 4 characters"]
+  email: {
+    type: String,
+    required: [true, "Please Enter Your Email"],
+    unique: true,
+    validate: [validator.isEmail, "Please enter a valid email"],
+  },
+
+  password: {
+    type: String,
+    required: [true, "Please Enter Your Password"],
+    minLength: [8, "Password must be at least 8 characters"],
+    select: false,
+  },
+
+  bio: {
+    type: String,
+  },
+
+  profilePic: {
+    public_id: {
+      type: String,
+      required: true,
     },
-
-    email: {
-        type: String,
-        required: [true, "Please Enter Your Email"],
-        unique: true,
-        validate: [validator.isEmail, "Please enter a valid email"]
+    url: {
+      type: String,
+      required: true,
     },
+  },
 
-    password: {
-        type: String,
-        required: [true, "Please Enter Your Password"],
-        minLength: [8, "Password must be at least 8 characters"],
-        select: false,
-    },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 
-    bio: {
-        type: String,
-    },
+  resetPasswordToken: String,
+  resetPasswordExpire: Date,
+});
 
-    profilePic: {
-            public_id: {
-              type: String,
-              required: true,
-            },
-            url: {
-              type: String,
-              required: true,
-            },
-    },
+userSchema.pre("save", async function (next) {
 
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
+  if (!this.isModified("password")) {
+    next();
+  }
 
-    resetPasswordToken: String,
-    resetPasswordExpire: Date,
-
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 module.exports = mongoose.model("User", userSchema);
+ 

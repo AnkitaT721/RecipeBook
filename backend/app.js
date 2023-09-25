@@ -9,8 +9,10 @@ app.use(express.json());
 
 //Route Imports
 const recipe = require("./routes/recipeRoute");
+const user = require("./routes/userRoute");
 
 app.use("/api/v1", recipe);
+app.use("/api/v1", user);
 
 
 //middleware for error handling
