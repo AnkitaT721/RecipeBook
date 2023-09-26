@@ -33,16 +33,16 @@ const recipeSchema = new mongoose.Schema({
     required: [true, "Please enter the process"],
   },
 
-  image: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
+  // image: {
+  //   public_id: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   url: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
 
   likeCount: {
     type: Number,
@@ -71,10 +71,11 @@ const recipeSchema = new mongoose.Schema({
     default: 0,
   },
 
-  //   user: {
-  //     type: mongoose.Schema.ObjectId,
-  //     required: true
-  //   },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: true
+    },
 
   createdAt: {
     type: Date,
