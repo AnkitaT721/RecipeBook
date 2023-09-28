@@ -30,6 +30,15 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
 
+  posts: [
+    {
+      post: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Recipe",
+      },
+    },
+  ],
+
   profilePic: {
     public_id: {
       type: String,

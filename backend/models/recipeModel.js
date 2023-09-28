@@ -44,6 +44,20 @@ const recipeSchema = new mongoose.Schema({
   //   },
   // },
 
+  likes: [
+    {
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+
   likeCount: {
     type: Number,
     default: 0,
@@ -51,15 +65,16 @@ const recipeSchema = new mongoose.Schema({
 
   comments: [
     {
-      // user: {
-      //   type: mongoose.Schema.ObjectId,
-      //   required: true
-      // },
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
       name: {
         type: String,
         required: true,
       },
-      comment: {
+      message: {
         type: String,
         required: true,
       },
@@ -71,11 +86,11 @@ const recipeSchema = new mongoose.Schema({
     default: 0,
   },
 
-    user: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: true
-    },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
 
   createdAt: {
     type: Date,

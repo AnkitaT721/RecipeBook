@@ -1,5 +1,6 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Recipe = require("../models/recipeModel");
+const Post = require("../models/postModel");
 const ErrorHandler = require("../utils/errorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
 
@@ -80,5 +81,99 @@ exports.deleteRecipe = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "Post deleted successfully",
+  });
+});
+
+//add like
+exports.addLike = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.body.recipeId);
+
+  const like = {
+    user: req.user._id,
+    name: req.user.name,
+  };
+
+  recipe.likes.push(like);
+  recipe.likeCount = recipe.likes.length;
+
+  await recipe.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+//unlike
+exports.unLike = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.body.recipeId);
+
+  const like = {
+    user: req.user._id,
+    name: req.user.name,
+  };
+
+  recipe.likes.pull(like);
+  recipe.likeCount = recipe.likes.length - 1;
+
+  await recipe.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+//add comment
+exports.addComment = catchAsyncErrors(async (req, res, next) => {
+  const { message, recipeId } = req.body;
+
+  const comment = {
+    user: req.user._id,
+    name: req.user.name,
+    message,
+  };
+
+  const recipe = await Recipe.findById(recipeId);
+
+  recipe.comments.push(comment);
+  recipe.numOfComments = recipe.comments.length;
+
+  await recipe.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+//get comments and likes
+exports.getComments = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.query.recipeId);
+
+  if (!recipe) {
+    return next(new ErrorHandler("Post not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    comments: recipe.comments,
+    likedBy: recipe.likes[0].name,
+    likeCount: recipe.likes.length,
+  });
+});
+
+
+//get my posts
+exports.getMyRecipes = catchAsyncErrors(async (req, res, next) => {
+  const uId = req.user._id;
+
+  // Use Mongoose to find recipes that belong to the specified user
+  const myRecipes = await Recipe.find({ user: uId });
+
+  if (!myRecipes || myRecipes.length === 0) {
+    return next(new ErrorHandler("Recipes not found for the specified user", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    myRecipes,
   });
 });

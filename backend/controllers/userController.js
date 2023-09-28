@@ -132,3 +132,32 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+
+//get user details
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+//update user details
+exports.updateUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const newDetails = {
+    name: req.body.name,
+    email: req.body.email,
+    bio: req.body.bio,
+  };
+
+  const user = await User.findByIdAndUpdate(req.user.id, newDetails, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+  });
+});
