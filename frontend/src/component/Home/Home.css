@@ -1,0 +1,112 @@
+.banner {
+  background-image: url("../../images/banner.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vmin;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.banner > h2 {
+  font: 600 3vmax "Poppins";
+}
+
+.banner > p {
+  font-weight: 400;
+  font-size: 1.5vmax;
+  font-family: "Poppins", sans-serif;
+}
+
+.heading-1 {
+  text-align: center;
+  font-size: 2vmax;
+}
+
+.heading-1 span {
+  color: #a41b1b;
+}
+
+.recipeCard {
+  width: 60vmax;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  margin: 2vmax;
+  transition: all 0.5s;
+  margin-bottom: 2vmax;
+  margin-left: 17.5vmax;
+  border: 1px solid rgba(103, 102, 102, 0.419);
+  border-radius: 6px;
+  padding: 1vmax;
+}
+
+.recipeCard:hover {
+    box-shadow: 0 0 10px rgba(124, 124, 124, 0.578);
+    transition: all 0.5s ease;
+    transform: translateY(-0.5vmax);
+}
+
+.recipeCard > img {
+    width: 60vmax;
+}
+
+.title-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 2.5vmax;
+    color: black;
+    margin: 0;
+}
+
+.type {
+    font-size: 1.5vmax;
+    margin: 0;
+    color: rgb(104, 103, 103);
+}
+
+.recipe-category {
+    font-size: 1.8vmax;
+    margin: 0;
+    display: flex;
+    color: #bf2c2c;
+}
+
+.recipe-category span {
+    color: black;
+}
+
+.recipe-category p:last-child{
+    padding-left: 4vmax;
+}
+
+.like-comment {
+    font-size: 1.5vmax;
+    display: flex;
+}
+
+.like-comment p:last-child {
+    padding-left: 4vmax;
+    color: rgb(4, 131, 42);
+}
+
+.like-comment p:first-child {
+    color: rgb(186, 9, 9);
+}
+
+.like-comment svg {
+    font-size: 1.8vmax;
+}
+
+.like-comment span {
+    padding-left: 2px;
+    font-size: 2vmax;
+}

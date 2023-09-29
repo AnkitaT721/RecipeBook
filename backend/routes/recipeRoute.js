@@ -12,7 +12,6 @@ const {
   getMyRecipes,
 } = require("../controllers/recipeController");
 const { isAuthenticatedUser } = require("../middleware/auth");
-const { newPost, myPosts } = require("../controllers/postController");
 
 const router = express.Router();
 

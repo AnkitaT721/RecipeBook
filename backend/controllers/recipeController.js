@@ -1,6 +1,5 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Recipe = require("../models/recipeModel");
-const Post = require("../models/postModel");
 const ErrorHandler = require("../utils/errorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
 
@@ -168,7 +167,7 @@ exports.getMyRecipes = catchAsyncErrors(async (req, res, next) => {
   // Use Mongoose to find recipes that belong to the specified user
   const myRecipes = await Recipe.find({ user: uId });
 
-  if (!myRecipes || myRecipes.length === 0) {
+  if (!myRecipes) {
     return next(new ErrorHandler("Recipes not found for the specified user", 404));
   }
 

@@ -12,7 +12,7 @@ class ApiFeatures {
             $options: "i",
           },
         }
-      : {};
+      : {}; 
 
     const keyword2 = this.queryString.keyword2
       ? {

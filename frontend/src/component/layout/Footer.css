@@ -1,0 +1,97 @@
+body,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(92, 12, 12);
+  color: #fff;
+  padding: 10px 20px;
+  /* position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+}
+
+.logo-f img {
+  max-width: 100px;
+}
+
+.text {
+  text-align: center;
+}
+
+.text p {
+  margin: 5px 0;
+}
+
+.social {
+  text-align: center;
+}
+
+.social h3 {
+  margin: 0 0 10px;
+}
+
+.social ul {
+  list-style: none;
+  padding: 0;
+}
+
+.social li {
+  margin: 10px 0;
+}
+
+.social a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.social a:hover {
+    color: #893a3a;
+    transition: all 0.5s ease-in-out;
+}
+
+.social a svg {
+  margin-right: 6px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .main {
+      padding: 10px;
+    }
+
+    .main div {
+        padding: 6px;
+    }
+    .text {
+      text-align: center;
+      margin: 10px 0; 
+    }
+    .social {
+      text-align: center;
+    }
+  
+    .social h3 {
+      margin: 0 0 10px; 
+    }
+  
+    .social li {
+      margin: 5px 0;
+    }
+    .social a {
+      font-size: 14px;
+    }
+    .social a svg {
+      font-size: 18px;
+    }
+  }
+  
