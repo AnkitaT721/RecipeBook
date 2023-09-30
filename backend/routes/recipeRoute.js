@@ -16,7 +16,7 @@ const { isAuthenticatedUser } = require("../middleware/auth");
 const router = express.Router();
 
 router.route("/recipe/new").post(isAuthenticatedUser, createRecipe);
-router.route("/recipes").get(isAuthenticatedUser, getAllRecipes);
+router.route("/recipes").get(getAllRecipes);
 router
   .route("/recipe/:id")
   .get(getRecipeDetails)

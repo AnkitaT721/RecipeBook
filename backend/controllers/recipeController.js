@@ -17,7 +17,7 @@ exports.createRecipe = catchAsyncErrors(async (req, res, next) => {
 
 //Get all recipes
 exports.getAllRecipes = catchAsyncErrors(async (req, res) => {
-  const postsPerPage = 2;
+  const postsPerPage = 10;
 
   const apiFeatures = new ApiFeatures(Recipe.find(), req.query)
     .search()

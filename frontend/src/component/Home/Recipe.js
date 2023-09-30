@@ -5,8 +5,8 @@ import { BiCommentDetail } from "react-icons/bi";
 
 const Recipe = ({ recipe }) => {
   return (
-    <Link className="recipeCard" to={recipe._id}>
-      <img src={recipe.images[0].url} alt="recipeimg" />
+    <Link className="recipeCard" to={`/recipe/${recipe._id}`}>
+      <img src={recipe.image.url} alt="recipeimg" />
       <div className="title-div">
       <p className="title">{recipe.title}</p>
       <p className="type">{recipe.type}</p>

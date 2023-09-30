@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../images/logo.png";
+import logo from "../../../images/logo.png";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";

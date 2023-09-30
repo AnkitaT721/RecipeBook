@@ -33,16 +33,16 @@ const recipeSchema = new mongoose.Schema({
     required: [true, "Please enter the process"],
   },
 
-  // image: {
-  //   public_id: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   url: {
-  //     type: String,
-  //     required: true,
-  //   },
-  // },
+  image: {
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+  },
 
   likes: [
     {
