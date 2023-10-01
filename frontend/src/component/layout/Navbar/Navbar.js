@@ -23,7 +23,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/">Recipes</Link>
+              <Link to="/recipes">Recipes</Link>
             </li>
             <li>
               <Link to="/">Contact</Link>
@@ -55,7 +55,7 @@ const Navbar = () => {
           </ul>
 
           <div className="hamburger">
-            <Link to="/" onClick={() => setShowMenu(!showMenu)}>
+            <Link onClick={() => setShowMenu(!showMenu)}>
               <GiHamburgerMenu />
             </Link>
             <Link to="/">

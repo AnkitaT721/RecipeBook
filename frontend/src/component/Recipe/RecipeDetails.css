@@ -14,126 +14,175 @@
 }
 
 .recipeDetails img {
-    width: 70vmax;
-    border-radius: 6px;
+  width: 70vmax;
+  border-radius: 6px;
 }
 
-.recipe-like-comment .like-comment-1{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.recipe-like-comment .like-comment-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .recipe-like-comment svg {
-    font-size: 1.9vmax;
+  font-size: 1.9vmax;
 }
 
-.like-comment-1{
-    font-size: 2vmax;
+.like-comment-1 {
+  font-size: 2vmax;
+}
+
+.like-comment-1 a {
+  text-decoration: none;
 }
 
 .like {
-    padding-left: 10px;
-    color: rgb(186, 9, 9);
+  padding-left: 10px;
+  color: rgb(186, 9, 9);
 }
 
 .saved {
-    padding-right: 10px;
-    color: rgb(17, 55, 121);
+  padding-right: 10px;
+  color: rgb(17, 55, 121);
 }
 
-.comment { 
-    color: rgb(4, 131, 42);
-    margin-left: 50vmax;
+.comment {
+  color: rgb(4, 131, 42);
+  margin-left: 50vmax;
 }
 
 .comment-form {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1vmax;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1vmax;
 }
 
-.comment-form input{
-    width: 58vmax;
-    padding: 0.6vmax;
-    padding-right: 16px;
-    border-radius: 30px;
-    background-color: rgb(235, 235, 235);
-    border: 3px solid rgb(208, 208, 208)
+.comment-form input {
+  width: 58vmax;
+  padding: 0.6vmax;
+  padding-right: 16px;
+  border-radius: 30px;
+  background-color: rgb(235, 235, 235);
+  border: 3px solid rgb(208, 208, 208);
 }
 
-.comment-form button{
-    width: 8vmax;
-    font-size: 1.2vmax;
-    border-radius: 30px;
-    border: none;
-    background-color: #bf2c2c;
-    color: white;
-    border: 3px solid #bf2c2c;
-    cursor: pointer;
+.comment-form button {
+  width: 8vmax;
+  font-size: 1.2vmax;
+  border-radius: 30px;
+  border: none;
+  background-color: #bf2c2c;
+  color: white;
+  border: 3px solid #bf2c2c;
+  cursor: pointer;
 }
 
 .comment-form button:hover {
-    background-color: #8e1111;
-    border: 3px solid #8e1111;
+  background-color: #8e1111;
+  border: 3px solid #8e1111;
 }
 
-.details-1 div{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
+.details-1 div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
 .details-1 div h2 {
-    font-size: 3vmax;
-    text-align: center;
-    margin-left: 12px;
-    text-transform: capitalize;
+  font-size: 3vmax;
+  text-align: center;
+  margin-left: 12px;
+  text-transform: capitalize;
 }
 
 .details-1 div p {
-    font-size: 2vmax;
-    text-align: center;
-    margin-right: 12px;
-    color: rgb(109, 109, 109);
+  font-size: 2vmax;
+  text-align: center;
+  margin-right: 12px;
 }
 
 .details-1 h3 {
-    margin: 0 12px 0 12px;
-    font-size: 1.8vmax;
+  margin: 0 12px 0 12px;
+  font-size: 1.8vmax;
 }
 
 .details-1 span {
-    margin: 0 10px 0 10px;
-    font-size: 1.6vmax;
-    font-style: italic;
-    color: rgb(98, 97, 97);
+  margin: 0 10px 0 10px;
+  font-size: 1.6vmax;
+  font-style: italic;
+  color: rgb(98, 97, 97);
 }
 
 .details-2 {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .details-2 p {
-    font-size: 1.8vmax;
-    margin: 12px;
+  font-size: 1.8vmax;
+  margin: 12px;
 }
 
 .details-2 span {
-    font-weight: 500;
-    color: #bf2c2c;
+  font-weight: 500;
+  color: #bf2c2c;
 }
 
 .details-3 {
-    margin: 12px;
+  margin: 12px;
 }
 
 .details-3 h3 {
-    font-size: 1.8vmax;
+  font-size: 1.8vmax;
 }
 
 .details-3 p {
-    font-size: 1.4vmax;
-    font-family: "Roboto";
+  font-size: 1.4vmax;
+  font-family: "Roboto";
+}
+
+.comments-section {
+  width: 90vmax;
+  display: flex;
+  flex-direction: column;
+  color: rgb(48, 48, 48);
+  transition: all 0.5s;
+  align-items: center;
+  border: 1px solid rgba(103, 102, 102, 0.419);
+  border-radius: 6px;
+  padding: 0.5vmax;
+  margin: auto;
+  margin-top: 2vmax;
+  margin-bottom: 2vmax;
+}
+
+.comments-section h3 {
+  font-size: 1.8vmax;
+  color: #5a5757;
+  align-self: start;
+  margin-left: 12px;
+  margin-top: auto;
+  border-bottom: 3px solid #bf2c2cc0;
+  margin-bottom: 1vmax;
+}
+
+.comments-stack ul {
+  width: 88.5vmax;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-stack ul li {
+  border: 1px solid rgba(237, 237, 237, 0.759);
+  margin-bottom: 6px;
+  padding-bottom: 14px;
+  padding-left: 14px;
+  border-radius: 10px;
+  background-color: rgba(237, 237, 237, 0.759);
+}
+
+.comments-stack ul li p {
+  font-weight: 600;
+  margin-bottom: 2px;
 }

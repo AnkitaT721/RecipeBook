@@ -3,3 +3,15 @@
 .App{
   font-family: "Poppins";
 }
+
+*{
+  scroll-behavior: smooth;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

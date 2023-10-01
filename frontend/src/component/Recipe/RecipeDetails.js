@@ -35,7 +35,7 @@ const RecipeDetails = () => {
         <Loader />
       ) : (
         <>
-          <MetaData title="details" />
+          <MetaData heading={`Recipe Diary--${recipe.title}`} />
           <div className="recipeDetails">
             <div>
               <img src={recipe.image && recipe.image.url} alt="recipeimage" />
@@ -46,9 +46,11 @@ const RecipeDetails = () => {
                 <div className="like">
                   <AiOutlineHeart /> {recipe.likeCount}
                 </div>
+                <a href="#container">
                 <div className="comment">
                   <MdOutlineInsertComment /> {recipe.numOfComments}
                 </div>
+                </a>
                 <div className="saved">
                   <FaRegBookmark />
                 </div>
@@ -64,7 +66,9 @@ const RecipeDetails = () => {
               <div className="details-1">
                 <div>
                   <h2>{recipe.title}</h2>
-                  <p>{recipe.type}</p>
+                  <p className={recipe.type === "veg" ? "green" : "red"}>
+                    {recipe.type}
+                  </p>
                 </div>
 
                 <h3>Ingredients:</h3>
@@ -85,6 +89,23 @@ const RecipeDetails = () => {
                 <p>{recipe.process}</p>
               </div>
             </div>
+          </div>
+
+          <div className="comments-section" id="container">
+            <h3>Comments</h3>
+
+            {recipe.comments && recipe.comments[0] ? (
+              <div className="comments-stack">
+                {recipe.comments &&
+                  recipe.comments.map((comment) => (
+                    <ul>
+                      <li><p>{comment.name}</p>{comment.message}</li>
+                    </ul>
+                  ))}
+              </div>
+            ) : (
+              <p>No Comments Yet</p>
+            )}
           </div>
         </>
       )}
