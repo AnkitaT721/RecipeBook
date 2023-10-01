@@ -5,6 +5,8 @@ import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
 import RecipeDetails from "./component/Recipe/RecipeDetails.js";
 import Recipes from "./component/Recipe/Recipes.js";
+import Search from "./component/Recipe/Search.js";
+import LoginSignup from "./component/User/LoginSignup";
 
 function App() {
   return (
@@ -16,6 +18,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recipe/:id" element={<RecipeDetails />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:keyword" element={<Recipes />} />
+
+        <Route path="/search" element={<Search />} />
+
+
+        <Route path="/login" element={<LoginSignup />} />
       </Routes>
 
       <Footer />

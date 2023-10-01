@@ -13,6 +13,15 @@
   margin-bottom: 2vmax;
 }
 
+.recipeDetails h1 {
+  font-size: 2vmax;
+  color: #5a5757;
+  align-self: start;
+  margin-top: auto;
+  border-bottom: 3px solid #bf2c2cc0;
+  margin-bottom: 1vmax;
+}
+
 .recipeDetails img {
   width: 70vmax;
   border-radius: 6px;

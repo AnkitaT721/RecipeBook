@@ -20,6 +20,7 @@ export const getRecipesReducer = (state = { recipes: [] }, action) => {
       return {
         loading: false,
         recipes: action.payload.recipes,
+        recipeCount: action.payload.filteredCount
       };
 
     case ALL_RECIPE_FAIL:

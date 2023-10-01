@@ -22,14 +22,14 @@ exports.getAllRecipes = catchAsyncErrors(async (req, res) => {
   const apiFeatures = new ApiFeatures(Recipe.find(), req.query)
     .search()
     .filter()
-    .pagination(postsPerPage);
-  const recipes = await apiFeatures.query;
+  let recipes = await apiFeatures.query;
 
-  // recipes = await apiFeatures.query.clone();
+  let filteredCount = recipes.length;
 
   res.status(200).json({
     success: true,
     recipes,
+    filteredCount
   });
 });
 

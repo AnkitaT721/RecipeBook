@@ -38,6 +38,7 @@ const RecipeDetails = () => {
           <MetaData heading={`Recipe Diary--${recipe.title}`} />
           <div className="recipeDetails">
             <div>
+              <h1>Detailed Recipe</h1>
               <img src={recipe.image && recipe.image.url} alt="recipeimage" />
             </div>
 

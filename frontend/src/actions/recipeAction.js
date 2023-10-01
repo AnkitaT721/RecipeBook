@@ -10,37 +10,46 @@ import {
 } from "../constants/recipeConstants";
 
 //get product (filters)
-export const getRecipes = () => async (dispatch) => {
-  try {
-    dispatch({ type: ALL_RECIPE_REQUEST });
+export const getRecipes =
+  (keyword = "", category, type) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: ALL_RECIPE_REQUEST });
 
-    //   let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+      let link = `/api/v1/recipes?keyword1=${keyword}`;
 
-    //   if (category) {
-    //     link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
-    //   }
+      if (category) {
+        link = `/api/v1/recipes?keyword1=${keyword}&category=${category}`;
+      }
 
-    //   if (category === "All") {
-    //     link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
-    //   }
+      if (type) {
+        link = `/api/v1/recipes?keyword1=${keyword}&category=${category}&type=${type}`;
+      }
 
-    const { data } = await axios.get("/api/v1/recipes");
+      if (category === "All") {
+        link = `/api/v1/recipes?keyword1=${keyword}`;
+      }
 
-    dispatch({
-      type: ALL_RECIPE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: ALL_RECIPE_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
+      const { data } = await axios.get(link);
+
+      console.log("Category:", category);
+      console.log("Type:", type);
+
+      dispatch({
+        type: ALL_RECIPE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ALL_RECIPE_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 //get detailed recipe
 export const getRecipeDetails = (id) => async (dispatch) => {
-  try{
+  try {
     dispatch({ type: RECIPE_DETAILS_REQUEST });
     const { data } = await axios.get(`/api/v1/recipe/${id}`);
 

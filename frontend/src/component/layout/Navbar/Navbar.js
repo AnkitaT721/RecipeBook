@@ -37,12 +37,12 @@ const Navbar = () => {
         <div className="profile">
           <ul className="profile-desktop">
             <li>
-              <Link to="/">
+              <Link to="/search">
                 <FiSearch />
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/login">
                 <BiSolidUserCircle className="user" />
               </Link>
             </li>
@@ -58,10 +58,10 @@ const Navbar = () => {
             <Link onClick={() => setShowMenu(!showMenu)}>
               <GiHamburgerMenu />
             </Link>
-            <Link to="/">
+            <Link to="/search">
                 <FiSearch />
               </Link>
-            <Link>
+            <Link to="/login">
               <BiSolidUserCircle />
             </Link>
             <Link>
