@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 import logo from "../../../images/logo.png";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
 import "./Navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../actions/userAction";
 
 const Navbar = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const {isAuthenticated} = useSelector((state) => state.user)
+
+  const logoutUserHandler = () => {
+    dispatch(logout());
+    navigate("/");
+    toast.success("Logged out successfully")
+  }
 
   const [showMenu, setShowMenu] = useState(false);
   return (
@@ -49,7 +63,7 @@ const Navbar = () => {
 
             <li>
               <Link to="/">
-                <FiLogOut className="logout" />
+                <FiLogOut className={isAuthenticated ? "logout" : "no-logout"} onClick={logoutUserHandler}/>
               </Link>
             </li>
           </ul>
@@ -64,8 +78,8 @@ const Navbar = () => {
             <Link to="/login">
               <BiSolidUserCircle />
             </Link>
-            <Link>
-              <FiLogOut />
+            <Link to="/">
+            <FiLogOut className={isAuthenticated ? "logout" : "no-logout"} onClick={logoutUserHandler}/>
             </Link>
           </div>
         </div>

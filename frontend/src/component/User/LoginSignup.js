@@ -124,7 +124,7 @@ const LoginSignup = () => {
                 <div className="loginEmail">
                   <AiOutlineMail />
                   <input
-                    type="email"
+                    type="ema il"
                     placeholder="Email"
                     required
                     value={loginEmail}

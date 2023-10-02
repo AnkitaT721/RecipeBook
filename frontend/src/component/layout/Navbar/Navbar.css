@@ -95,6 +95,10 @@ ul {
   display: none;
 }
 
+.no-logout {
+  display: none;
+}
+
 @media (max-width: 998px) {
   .main-nav {
     height: 70px;
