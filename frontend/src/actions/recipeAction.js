@@ -4,6 +4,9 @@ import {
   ALL_RECIPE_REQUEST,
   ALL_RECIPE_SUCCESS,
   CLEAR_ERRORS,
+  MY_RECIPES_FAIL,
+  MY_RECIPES_REQUEST,
+  MY_RECIPES_SUCCESS,
   RECIPE_DETAILS_FAIL,
   RECIPE_DETAILS_REQUEST,
   RECIPE_DETAILS_SUCCESS,
@@ -60,6 +63,22 @@ export const getRecipeDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: RECIPE_DETAILS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//my Recipes
+export const getMyRecipes = () => async (dispatch) => {
+  try {
+    dispatch({ type: MY_RECIPES_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/myposts`);
+
+    dispatch({ type: MY_RECIPES_SUCCESS, payload: data.myRecipes });
+  } catch (error) {
+    dispatch({
+      type: MY_RECIPES_FAIL,
       payload: error.response.data.message,
     });
   }

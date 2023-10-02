@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+}
+
+.mainProfileRecipe {
+  display: flex;
+  justify-content: center;
+}
+
+.profileRecipeCard {
+  width: 70vmax;
+  display: flex;
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  transition: all 0.5s;
+  margin-bottom: 1vmax;
+  border: 1px solid rgba(103, 102, 102, 0.419);
+  border-radius: 6px;
+  padding: 0.5vmax;
+  margin-top: 2vmax;
+  box-shadow: 0 0 5px rgba(171, 170, 170, 0.578);
+}
+
+.profileRecipeCard img {
+  width: 18vmax;
+  border-radius: 6px;
+  margin-right: 0.5vmax;
+}
+
+.recipeinfo {
+  display: flex;
+}
+
+.recipeTitle {
+  text-decoration: none;
+  color: black;
+  font-size: 1.8vmax;
+  margin-left: 30px;
+  margin-right: 100px;
+}
+
+.recipeTitle:hover {
+  color: #bf2c2c;
+  transition: all 0.3s ease;
+}
+
+.info {
+  margin-left: 2.2vmax;
+  margin-top: 1vmax;
+  font-size: 1.3vmax;
+}
+
+.info p {
+  margin-top: 0.4vmax;
+}
+
+.type {
+  color: rgb(129, 128, 128);
+}
+
+.info span {
+  font-weight: 500;
+  color: #bf2c2c;
+}
+
+.postOptions {
+  display: flex;
+}
+
+.postOptions svg {
+  font-size: 1.4vmax;
+  margin-top: 3vmax;
+  cursor: pointer;
+  position: absolute;
+  transform: translateX(-2vmax);
+  transition: all 0.3s ease-in-out;
+}
+
+.optionsMenu{
+    margin-top: 4vmax;
+    transform: translateX(-8vmax);
+}
+
+.optionsMenu button {
+  width: 80%;
+  margin: 4px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 2px solid white;
+  font-weight: 500;
+  background-color: #bf2c2c;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.optionsMenu button:hover {
+  background-color: #892424;
+}

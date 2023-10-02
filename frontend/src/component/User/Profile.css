@@ -1,0 +1,84 @@
+.profile-info {
+  background-image: url("../../images/banner4.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  box-shadow: #b6b4b4e4 0px 20px 50px -20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.4vmax;
+}
+
+.post-info h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 1.9vmax;
+}
+
+.post-info h1 span {
+    color: #a41b1b;
+}
+
+.profile-info img {
+  width: 250px;
+  height: 250px;
+  border: 4px solid #7c2121;
+  margin: 0.8vmax;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.profile-info h4 {
+  color: black;
+  font-size: 2.6vmax;
+}
+
+.profile-info p {
+  color: rgb(51, 51, 51);
+  font-size: 1.6vmax;
+}
+
+.profile-info a {
+  text-decoration: none;
+  padding: 0.7vmax 2vmax 0.7vmax 2vmax;
+  border: 1px solid #bf2c2c;
+  margin: 0.6vmax;
+  background-color: #bf2c2c;
+  color: white;
+  border-radius: 4px;
+}
+
+.profile-info a:hover {
+  background-color: #892424;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-post {
+  text-align: center;
+  padding-bottom: 1vmax;
+  font-size: 1.8vmax;
+  font-weight: 500;
+}
+
+.create-post {
+  text-decoration: none;
+  padding: 0.7vmax 2vmax 0.7vmax 2vmax;
+  border: 1px solid #bf2c2c;
+  margin: 0.6vmax;
+  background-color: #bf2c2c;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 1vmax;
+}
+
+.create-post:hover {
+  background-color: #892424;
+}

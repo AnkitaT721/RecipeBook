@@ -44,6 +44,11 @@
 .recipe-heading {
     margin-bottom: 0px;
     text-align: center;
+    margin-top: 1vmax;
+}
+
+.recipe-heading span {
+    color: #a41b1b;
 }
 
 .category-link {

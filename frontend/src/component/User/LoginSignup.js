@@ -3,6 +3,7 @@ import "./LoginSignup.css";
 import { AiOutlineMail } from "react-icons/ai";
 import { SlLockOpen } from "react-icons/sl";
 import { MdAccountCircle } from "react-icons/md";
+import { BsChatLeftText } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import { toast } from "react-toastify";
@@ -34,7 +35,7 @@ const LoginSignup = () => {
     password: "",
   });
 
-  const { name, email, password } = user;
+  const { name, email, password, bio } = user;
 
   const [profilePic, setProfilePic] = useState();
   const [profilePicPreview, setProfilePicPreview] = useState(profile);
@@ -50,6 +51,7 @@ const LoginSignup = () => {
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
+    myForm.set("bio", bio);
     myForm.set("profilePic", profilePic);
 
     dispatch(register(myForm))
@@ -181,6 +183,17 @@ const LoginSignup = () => {
                     required
                     name="password"
                     value={password}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div className="signUpBio">
+                  <BsChatLeftText />
+                  <input
+                    type="text"
+                    placeholder="Add a bio"
+                    required
+                    name="bio"
+                    value={bio}
                     onChange={registerDataChange}
                   />
                 </div>

@@ -88,7 +88,7 @@ const Recipes = () => {
         </div>
 
         <div className="recipes-right">
-          <h2 className="recipe-heading">All Recipes</h2>
+          <h2 className="recipe-heading">All <span>Recipes</span></h2>
 
           <div className="recipes">
             {recipes && recipes.map((recipe) => <RecipeCard recipe={recipe} />)}
