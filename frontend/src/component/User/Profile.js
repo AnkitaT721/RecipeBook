@@ -7,25 +7,32 @@ import { clearErrors } from "../../actions/userAction";
 import { getMyRecipes } from "../../actions/recipeAction";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader/Loader";
+import MetaData from "../layout/MetaData";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { user, error, loading = true } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const { user, error, loading = true, isAuthenticated } = useSelector((state) => state.user);
   const { myRecipes } = useSelector((state) => state.myRecipes);
 
   useEffect(() => {
+    if (isAuthenticated === false) {
+      navigate("/login");
+    }
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
     }
     dispatch(getMyRecipes());
-  }, [dispatch, error]);
+  }, [dispatch, error, isAuthenticated, navigate]);
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
         <>
+        <MetaData heading={`${user.name}--My Profile`} />
           <div className="profile-container">
             <div className="profile-info">
               <img src={user.profilePic.url} alt={user.name} />

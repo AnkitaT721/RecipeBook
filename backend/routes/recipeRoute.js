@@ -10,6 +10,7 @@ const {
   unLike,
   getComments,
   getMyRecipes,
+  getUserRecipes,
 } = require("../controllers/recipeController");
 const { isAuthenticatedUser } = require("../middleware/auth");
 
@@ -29,5 +30,6 @@ router.route("/unlike").put(isAuthenticatedUser, unLike);
 
 router.route("/comments").get(getComments);
 router.route("/myposts").get(isAuthenticatedUser, getMyRecipes);
+router.route("/userrecipes/:id").get(getUserRecipes);
 
 module.exports = router;

@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  ADD_COMMENT_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
   ALL_RECIPE_FAIL,
   ALL_RECIPE_REQUEST,
   ALL_RECIPE_SUCCESS,
@@ -79,6 +82,29 @@ export const getMyRecipes = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: MY_RECIPES_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//add comment
+export const addComment = (commentData) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_COMMENT_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const { data } = await axios.put(`/api/v1/comment`, commentData, config);
+
+    dispatch({
+      type: ADD_COMMENT_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: ADD_COMMENT_FAIL,
       payload: error.response.data.message,
     });
   }

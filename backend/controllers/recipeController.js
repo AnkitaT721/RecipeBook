@@ -6,6 +6,7 @@ const ApiFeatures = require("../utils/apiFeatures");
 //create/upload recipe
 exports.createRecipe = catchAsyncErrors(async (req, res, next) => {
   req.body.user = req.user.id;
+  req.body.userName = req.user.name;
 
   const recipe = await Recipe.create(req.body);
 
@@ -174,5 +175,22 @@ exports.getMyRecipes = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     myRecipes,
+  });
+});
+
+//get user posts
+exports.getUserRecipes = catchAsyncErrors(async (req, res, next) => {
+  const uId = req.params.id;
+
+  // Use Mongoose to find recipes that belong to the specified user
+  const userRecipes = await Recipe.find({ user: uId });
+
+  if (!userRecipes) {
+    return next(new ErrorHandler("Recipes not found for the specified user", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    userRecipes,
   });
 });

@@ -9,10 +9,16 @@ import Recipes from "./component/Recipe/Recipes.js";
 import Search from "./component/Recipe/Search.js";
 import LoginSignup from "./component/User/LoginSignup";
 import Profile from "./component/User/Profile.js";
+import UpdateProfile from "./component/User/UpdateProfile.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
+import ResetPassword from "./component/User/ResetPassword.js";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
+import { useSelector } from "react-redux";
+import ProtectedRoute from "./component/Route/ProtectedRoute";
 
 function App() {
+  // const { isAuthenticated } = useSelector((state) => state.user);
   useEffect(() => {
     store.dispatch(loadUser());
   });
@@ -31,7 +37,16 @@ function App() {
           <Route path="/search" element={<Search />} />
 
           <Route path="/login" element={<LoginSignup />} />
+
           <Route path="/profile" element={<Profile />} />
+          <Route path="/mydetails/update" element={<UpdateProfile />} />
+
+          <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
+
+          {/* <Route element={isAuthenticated && <ProtectedRoute isAuthenticated={isAuthenticated} />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route> */}
         </Routes>
 
         <Footer />

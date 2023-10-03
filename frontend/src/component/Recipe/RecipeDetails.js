@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import "./RecipeDetails.css";
@@ -8,7 +8,12 @@ import Loader from "../layout/Loader/Loader";
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineInsertComment } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
-import { clearErrors, getRecipeDetails } from "../../actions/recipeAction";
+import {
+  addComment,
+  clearErrors,
+  getRecipeDetails,
+} from "../../actions/recipeAction";
+import { ADD_COMMENT_RESET } from "../../constants/recipeConstants";
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -18,16 +23,43 @@ const RecipeDetails = () => {
     (state) => state.recipeDetails
   );
 
+  const {success, error:commentError } = useSelector((state) => state.addComment);
+
+  const [message, setMessage] = useState("");
+
+  const addCommentHandler = (e) => {
+    e.preventDefault();
+
+    const myForm = new FormData();
+
+    myForm.set("message", message);
+    myForm.set("recipeId", id);
+
+    dispatch(addComment(myForm));
+  };
+
   useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
     }
 
+    if (commentError) {
+      toast.error(commentError);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      toast.success("Comment added successfully")
+      setMessage("");
+
+      dispatch({type: ADD_COMMENT_RESET})
+    }
+
     dispatch(getRecipeDetails(id));
 
     window.scrollTo(0, 0);
-  }, [dispatch, id, error]);
+  }, [dispatch, id, error, success, commentError]);
 
   return (
     <>
@@ -48,9 +80,9 @@ const RecipeDetails = () => {
                   <AiOutlineHeart /> {recipe.likeCount}
                 </div>
                 <a href="#container">
-                <div className="comment">
-                  <MdOutlineInsertComment /> {recipe.numOfComments}
-                </div>
+                  <div className="comment">
+                    <MdOutlineInsertComment /> {recipe.numOfComments}
+                  </div>
                 </a>
                 <div className="saved">
                   <FaRegBookmark />
@@ -59,8 +91,13 @@ const RecipeDetails = () => {
 
               <div className="add-comment">
                 <form className="comment-form">
-                  <input type="text" placeholder="Add a comment" />
-                  <button>Add</button>
+                  <input
+                    type="text"
+                    placeholder="Add a comment"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                  <button onClick={addCommentHandler}>Add</button>
                 </form>
               </div>
 
@@ -89,6 +126,9 @@ const RecipeDetails = () => {
                 <h3>Cooking Process:</h3>
                 <p>{recipe.process}</p>
               </div>
+              <Link className="user-name" to={`/profile/${recipe.user}`}>
+                Created by {recipe.userName}
+              </Link>
             </div>
           </div>
 
@@ -100,7 +140,10 @@ const RecipeDetails = () => {
                 {recipe.comments &&
                   recipe.comments.map((comment) => (
                     <ul>
-                      <li><p>{comment.name}</p>{comment.message}</li>
+                      <li>
+                        <p>{comment.name}</p>
+                        {comment.message}
+                      </li>
                     </ul>
                   ))}
               </div>

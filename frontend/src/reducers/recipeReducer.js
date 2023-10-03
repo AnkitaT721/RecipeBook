@@ -1,4 +1,8 @@
 import {
+  ADD_COMMENT_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_RESET,
+  ADD_COMMENT_SUCCESS,
   ALL_RECIPE_FAIL,
   ALL_RECIPE_REQUEST,
   ALL_RECIPE_SUCCESS,
@@ -92,6 +96,44 @@ export const myRecipesReducer = (state = { orders: [] }, action) => {
       return {
         loading: false,
         error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const addCommentReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ADD_COMMENT_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload,
+      };
+
+    case ADD_COMMENT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case ADD_COMMENT_RESET:
+      return {
+        ...state,
+        success: false,
       };
 
     case CLEAR_ERRORS:

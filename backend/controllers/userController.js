@@ -5,6 +5,7 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
+const Recipe = require("../models/recipeModel");
 
 //register user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -78,9 +79,11 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+
+  // const resetPasswordUrl = `${req.protocol}://${req.get(
+  //   "host"
+  // )}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is : \n\n${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it`;
 
@@ -93,13 +96,12 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: `Email sent to ${user.email} successfully`,
     });
   } catch (error) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 
-    user.save({ validateBeforeSave: false });
+    await user.save({ validateBeforeSave: false });
 
     return next(new ErrorHandler(error.message, 500));
   }
@@ -158,6 +160,24 @@ exports.updateUserDetails = catchAsyncErrors(async (req, res, next) => {
     bio: req.body.bio,
   };
 
+  if (req.body.profilePic !== "") {
+    const user = await User.findById(req.user.id);
+    const imageId = user.profilePic.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.profilePic, {
+      folder: "profilePic--RecipeDiary",
+      width: 150,
+      crop: "scale",
+    });
+
+    newDetails.profilePic = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
   const user = await User.findByIdAndUpdate(req.user.id, newDetails, {
     new: true,
     runValidators: true,
@@ -168,3 +188,18 @@ exports.updateUserDetails = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+//save recipes
+exports.saveRecipes = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.query.recipeId);
+
+  const user = await User.findById(req.user.id);
+
+  user.recipes.push(recipe);
+
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+})
