@@ -25,12 +25,6 @@ import {
   UPDATE_RECIPE_REQUEST,
   UPDATE_RECIPE_RESET,
   UPDATE_RECIPE_SUCCESS,
-  ADD_LIKE_REQUEST,
-  ADD_LIKE_SUCCESS,
-  ADD_LIKE_FAIL,
-  UNLIKE_REQUEST,
-  UNLIKE_SUCCESS,
-  UNLIKE_FAIL,
   USER_RECIPES_REQUEST,
   USER_RECIPES_SUCCESS,
   USER_RECIPES_FAIL,
@@ -193,44 +187,6 @@ export const addCommentReducer = (state = {}, action) => {
       return {
         ...state,
         error: null,
-      };
-
-    default:
-      return state;
-  }
-};
-
-// reducers/recipeReducers.js
-
-export const addLikeReducer = (state = { isLiked: false }, action) => {
-  switch (action.type) {
-    case ADD_LIKE_REQUEST:
-    case UNLIKE_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case ADD_LIKE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        isLiked: true,
-      };
-
-    case UNLIKE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        isLiked: false,
-      };
-
-    case ADD_LIKE_FAIL:
-    case UNLIKE_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
       };
 
     default:

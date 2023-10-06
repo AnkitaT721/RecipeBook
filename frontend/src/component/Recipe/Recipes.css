@@ -65,8 +65,7 @@
 
 .no-recipes{
     color: rgb(142, 138, 138);
-    display: flex;
-    text-align: center;
+    margin-left: 4vmax;
 }
 
 .category-link:hover {
@@ -121,4 +120,8 @@
   
   .pageLinkActive {
     color: white;
+  }
+
+  .active{
+    color: rgb(150, 38, 38);
   }

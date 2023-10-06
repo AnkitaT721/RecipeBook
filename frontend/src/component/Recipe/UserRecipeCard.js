@@ -5,20 +5,8 @@ const UserRecipeCard = ({ recipe }) => {
   return (
     <>
       <div className="userResMain">
-        <div className="userDetailsMain">
-          <img src={recipe.userImg} alt="user profile pic" />
-          <h4>
-            User Name: <span>{recipe.userName}</span>
-          </h4>
-          <h4>
-            Bio: <span>{recipe.userBio}</span>
-          </h4>
-        </div>
       </div>
         <div className="createRecipeContainer">
-          <h2 className="createHeading">
-            {`${recipe.userName}'s`} <span>Recipes</span>
-          </h2>
           <div className="profileRecipeCard">
             <img src={recipe.image.url} alt="recipeimg" />
             <div className="recipeinfo">

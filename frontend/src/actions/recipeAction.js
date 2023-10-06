@@ -3,9 +3,6 @@ import {
   ADD_COMMENT_FAIL,
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
-  ADD_LIKE_FAIL,
-  ADD_LIKE_REQUEST,
-  ADD_LIKE_SUCCESS,
   ALL_RECIPE_FAIL,
   ALL_RECIPE_REQUEST,
   ALL_RECIPE_SUCCESS,
@@ -22,9 +19,6 @@ import {
   RECIPE_DETAILS_FAIL,
   RECIPE_DETAILS_REQUEST,
   RECIPE_DETAILS_SUCCESS,
-  UNLIKE_FAIL,
-  UNLIKE_REQUEST,
-  UNLIKE_SUCCESS,
   UPDATE_RECIPE_FAIL,
   UPDATE_RECIPE_REQUEST,
   UPDATE_RECIPE_SUCCESS,
@@ -51,7 +45,7 @@ export const getRecipes =
       }
 
       if (category === "All") {
-        link = `/api/v1/recipes?keyword1=${keyword}&page=${currentPage}`;
+        link = `/api/v1/recipes?keyword1=${keyword}&page=${currentPage}&type=${type}`;
       }
 
       const { data } = await axios.get(link);
@@ -142,63 +136,6 @@ export const addComment = (commentData) => async (dispatch) => {
     dispatch({
       type: ADD_COMMENT_FAIL,
       payload: error.response.data.message,
-    });
-  }
-};
-
-//add like
-export const addLike = (recipeId) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: ADD_LIKE_REQUEST });
-
-    const {
-      user: { user },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.id}`,
-      },
-    };
-
-    await axios.put(`/api/recipes/like/${recipeId}`, {}, config);
-
-    dispatch({ type: ADD_LIKE_SUCCESS });
-  } catch (error) {
-    dispatch({
-      type: ADD_LIKE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
-
-export const unlikeRecipe = (recipeId) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: UNLIKE_REQUEST });
-
-    const {
-      user: { user },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.id}`,
-      },
-    };
-
-    await axios.put(`/api/recipes/unlike/${recipeId}`, {}, config);
-
-    dispatch({ type: UNLIKE_SUCCESS });
-  } catch (error) {
-    dispatch({
-      type: UNLIKE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
     });
   }
 };

@@ -73,6 +73,15 @@ const Navbar = () => {
 
             <li>
               <NavLink
+                to="/users"
+                className={location.pathname === "/users" ? "active-link" : ""}
+              >
+                Users
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
                 to={isAuthenticated ? "/recipe/new" : "/login"}
                 className={
                   location.pathname ===

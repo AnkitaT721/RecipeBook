@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { AiOutlineHeart } from "react-icons/ai";
+import { Link } from "react-router-dom"; 
 import { BiCommentDetail } from "react-icons/bi";
 
 const Recipe = ({ recipe }) => {

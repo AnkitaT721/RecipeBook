@@ -1,7 +1,18 @@
-const express = require('express');
-const { registerUser, loginUser, logoutUser, forgotPassword, resetPassword, getUserDetails, updateUserDetails, getMyPosts, saveRecipes, getSavedRecipes, deleteSavedRecipe, unSave } = require('../controllers/userController');
-const { isAuthenticatedUser } = require('../middleware/auth');
-
+const express = require("express");
+const {
+  registerUser,
+  loginUser,
+  logoutUser,
+  forgotPassword,
+  resetPassword,
+  getUserDetails,
+  updateUserDetails,
+  saveRecipes,
+  getSavedRecipes,
+  unSave,
+  getAllUsers,
+} = require("../controllers/userController");
+const { isAuthenticatedUser } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -15,5 +26,6 @@ router.route("/password/reset/:token").put(resetPassword);
 router.route("/save/:id").put(isAuthenticatedUser, saveRecipes);
 router.route("/getsaved").get(isAuthenticatedUser, getSavedRecipes);
 router.route("/deletesaved/:id").put(isAuthenticatedUser, unSave);
+router.route("/allusers").get(getAllUsers);
 
 module.exports = router;

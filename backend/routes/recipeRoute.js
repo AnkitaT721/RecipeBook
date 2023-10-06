@@ -6,8 +6,6 @@ const {
   updateRecipe,
   deleteRecipe,
   addComment,
-  addLike,
-  unLike,
   getComments,
   getMyRecipes,
   getUserRecipes,
@@ -25,8 +23,6 @@ router
   .delete(isAuthenticatedUser, deleteRecipe);
 
 router.route("/comment").put(isAuthenticatedUser, addComment);
-router.route("/like").put(isAuthenticatedUser, addLike);
-router.route("/unlike").put(isAuthenticatedUser, unLike);
 
 router.route("/comments").get(getComments);
 router.route("/myposts").get(isAuthenticatedUser, getMyRecipes);

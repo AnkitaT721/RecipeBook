@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  ALL_USERS_FAIL,
+  ALL_USERS_REQUEST,
+  ALL_USERS_SUCCESS,
   CLEAR_ERRORS,
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_REQUEST,
@@ -212,6 +215,20 @@ export const getSavedRecipes = () => async (dispatch) => {
     });
   }
 };
+
+//get all users
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USERS_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/allusers`);
+
+    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+  } catch (error) {
+    dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
+  }
+};
+
 
 //clearing errors
 export const clearErrors = () => async (dispatch) => {

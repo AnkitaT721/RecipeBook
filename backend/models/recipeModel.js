@@ -44,25 +44,6 @@ const recipeSchema = new mongoose.Schema({
     },
   },
 
-  likes: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-
-  likeCount: {
-    type: Number,
-    default: 0,
-  },
-
   comments: [
     {
       user: {

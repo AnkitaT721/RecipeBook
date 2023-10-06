@@ -2,8 +2,8 @@ import { legacy_createStore as createStore } from "redux";
 import { combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { addCommentReducer, addLikeReducer, editRecipeReducer,  getRecipesReducer,  myRecipesReducer, newRecipeReducer, recipeDetailsReducer, userRecipesReducer } from "./reducers/recipeReducer";
-import { forgotPasswordReducer, getSavedReducer, saveRecipesReducer, updateProfileReducer, userReducer } from "./reducers/userReducer";
+import { addCommentReducer, editRecipeReducer,  getRecipesReducer,  myRecipesReducer, newRecipeReducer, recipeDetailsReducer, userRecipesReducer } from "./reducers/recipeReducer";
+import { allUsersReducer, forgotPasswordReducer, getSavedReducer, saveRecipesReducer, updateProfileReducer, userReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
     recipes: getRecipesReducer,
@@ -15,10 +15,10 @@ const reducer = combineReducers({
     addComment: addCommentReducer,
     newRecipe: newRecipeReducer,
     editRecipe: editRecipeReducer,
-    addLike: addLikeReducer,
     saveRecipes: saveRecipesReducer,
     getSaved: getSavedReducer,
-    userRecipes: userRecipesReducer
+    userRecipes: userRecipesReducer,
+    allUsers: allUsersReducer
 });
 
 let initialState = {};

@@ -1,7 +1,6 @@
 import React from 'react';
 import "./RecipeCard.css";
 import { Link } from "react-router-dom";
-import { AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 
 const RecipeCard = ({ recipe }) => {
@@ -20,10 +19,6 @@ const RecipeCard = ({ recipe }) => {
         <p><span>Serves: </span> {recipe.serves}</p>
       </div>
       <div className="like-comment-2">
-        <p>
-          <AiOutlineHeart />
-          <span>{recipe.likeCount}</span>
-        </p>
         <p>
           <BiCommentDetail />
           <span>{recipe.numOfComments}</span>

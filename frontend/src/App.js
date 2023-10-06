@@ -19,16 +19,17 @@ import UserRecipes from "./component/Recipe/UserRecipes.js";
 import About from "./component/layout/About/About.js";
 import Contact from "./component/layout/Contact/Contact.js";
 import NotFound from "./component/layout/NotFound/NotFound.js";
+import AllUsers from "./component/User/AllUsers.js";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
 
 function App() {
-  // const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated } = useSelector((state) => state.user);
   useEffect(() => {
     store.dispatch(loadUser());
-  });
+  }, []);
 
   return (
     <>
@@ -48,21 +49,19 @@ function App() {
 
           <Route path="/login" element={<LoginSignup />} />
 
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/mydetails/update" element={<UpdateProfile />} />
-
           <Route path="/password/forgot" element={<ForgotPassword />} />
           <Route path="/password/reset/:token" element={<ResetPassword />} />
 
-          <Route path="/recipe/new" element={<NewRecipe />} />
-          <Route path="profile/update/:id" element={<UpdateRecipe />} />
-          <Route path="/profile/saved" element={<SavedRecipes />} />
-
+          <Route path="/users" element={<AllUsers />} />
           <Route path="/profile/:id" element={<UserRecipes />} />
 
-          {/* <Route element={isAuthenticated && <ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/profile" element={<Profile />} />
-          </Route> */}
+            <Route path="/mydetails/update" element={<UpdateProfile />} />
+            <Route path="/recipe/new" element={<NewRecipe />} />
+            <Route path="profile/update/:id" element={<UpdateRecipe />} />
+            <Route path="/profile/saved" element={<SavedRecipes />} />
+          </Route>
         </Routes>
 
         <Footer />

@@ -15,15 +15,18 @@ const UserRecipes = () => {
 
   useEffect(() => {
     dispatch(getUserRecipes(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
     <>
-    <MetaData heading={`Recipe Diary--User Profile`} />
+    <MetaData heading={`Recipe Diary--User Recipes`} />
       <div className="userResMain">
+      <h1>
+          Recipes
+        </h1>
         <div className="container" id="container">
           {userRecipes && userRecipes.length === 0 ? (
             <p className="no-post">There is No Post</p>

@@ -39,6 +39,19 @@ const Recipes = () => {
   const [type, setType] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
+
+  const handleCategoryClick = (category) => {
+    setCategory(category);
+    setSelectedCategory(category);
+  };
+
+  const handleTypeClick = (type) => {
+    setType(type);
+    setSelectedType(type);
+  };
+
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
@@ -67,10 +80,15 @@ const Recipes = () => {
             <ul className="category-box">
               {categories.map((category) => (
                 <li
+                className={`category-link ${selectedCategory === category ? "active" : ""}`}
+                key={category}
+                onClick={() => handleCategoryClick(category)}
+              >
+                {/* <li
                   className="category-link"
                   key={category}
                   onClick={() => setCategory(category)}
-                >
+                > */}
                   {category}
                 </li>
               ))}
@@ -82,10 +100,15 @@ const Recipes = () => {
             <ul className="category-box">
               {types.map((type) => (
                 <li
+                className={`category-link ${selectedType === type ? "active" : ""}`}
+                key={type}
+                onClick={() => handleTypeClick(type)}
+              >
+                {/* <li
                   className="category-link"
                   key={type}
                   onClick={() => setType(type)}
-                >
+                > */}
                   {type}
                 </li>
               ))}
