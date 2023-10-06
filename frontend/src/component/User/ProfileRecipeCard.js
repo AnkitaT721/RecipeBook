@@ -1,43 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProfileRecipeCard.css";
 import { SlOptionsVertical } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ProfileRecipeCard({ recipe }) {
+  const navigate = useNavigate();
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
   const handleEditClick = () => {
-    // Implement edit functionality here
-  };
-
-  const handleDeleteClick = () => {
-    // Implement delete functionality here
+    navigate(`update/${recipe._id}`)
   };
   return (
     <>
-    <div className="mainProfileRecipe">
-      <div className="profileRecipeCard">
-        <img src={recipe.image.url} alt="recipeimg" />
-        <div className="recipeinfo">
-          <div>
-            <Link className="recipeTitle" to={`/recipe/${recipe._id}`}>
-              {recipe.title}
-            </Link>
-            <div className="info">
-              <p className="type">{recipe.type}</p>
-              <p>
-                <span>Cuisine: </span>
-                {recipe.category}
-              </p>
-              <p>
-                <span>Serves: </span> {recipe.serves}
-              </p>
+      <div className="mainProfileRecipe">
+        <div className="profileRecipeCard">
+          <img src={recipe.image.url} alt="recipeimg" />
+          <div className="recipeinfo">
+            <div>
+              <Link className="recipeTitle" to={`/recipe/${recipe._id}`}>
+                {recipe.title}
+              </Link>
+              <div className="info">
+                <p className="type">{recipe.type}</p>
+                <p>
+                  <span>Cuisine: </span>
+                  {recipe.category}
+                </p>
+                <p>
+                  <span>Serves: </span> {recipe.serves}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      
         <div className="postOptions">
           <SlOptionsVertical
             onClick={() => {
@@ -46,8 +42,7 @@ function ProfileRecipeCard({ recipe }) {
           />
           {isOptionsOpen && (
             <div className="optionsMenu">
-              <button onClick={handleEditClick}>Edit</button>
-              <button onClick={handleDeleteClick}>Delete</button>
+              <button onClick={handleEditClick}>Update</button>
             </div>
           )}
         </div>

@@ -45,8 +45,28 @@ const userSchema = new mongoose.Schema({
     {
       recipe: {
         type: mongoose.Schema.ObjectId,
-        ref: "User"
+        ref: "Recipe"
       },
+      recipeName: {
+        type: String,
+        ref: "Recipe"
+      },
+      recipeImg: {
+        type: String,
+        ref: "Recipe"
+      },
+      recipeCate: {
+        type: String,
+        ref: "Recipe"
+      },
+      recipeType: {
+        type: String,
+        ref: "Recipe"
+      },
+      recipeServe: {
+        type: Number,
+        ref: "Recipe"
+      }
     },
   ],
 

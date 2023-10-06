@@ -53,11 +53,12 @@
 .saved {
   padding-right: 10px;
   color: rgb(17, 55, 121);
+  cursor: pointer;
 }
 
 .comment {
   color: rgb(4, 131, 42);
-  margin-left: 50vmax;
+  margin-left: 60vmax;
 }
 
 .comment-form {
@@ -84,6 +85,7 @@
   color: white;
   border: 3px solid #bf2c2c;
   cursor: pointer;
+  margin-left: 4px;
 }
 
 .comment-form button:hover {

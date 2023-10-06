@@ -99,6 +99,10 @@ ul {
   display: none;
 }
 
+.active-link {
+  border-bottom: 3px solid #bf2c2c;
+}
+
 @media (max-width: 998px) {
   .main-nav {
     height: 70px;

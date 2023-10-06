@@ -2,13 +2,41 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Recipe = require("../models/recipeModel");
 const ErrorHandler = require("../utils/errorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary");
 
 //create/upload recipe
 exports.createRecipe = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
-  req.body.userName = req.user.name;
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
+    folder: "Recipe Images -- Recipe Diary",
+    width: 150,
+    crop: "scale",
+  });
 
-  const recipe = await Recipe.create(req.body);
+  const {
+    title,
+    ingredients,
+    category,
+    type,
+    serves,
+    process,
+  } = req.body;
+
+  const recipe = await Recipe.create({
+    title,
+    ingredients,
+    category,
+    type,
+    serves,
+    process,
+    user: req.user._id,
+    userName: req.user.name,
+    userBio: req.user.bio,
+    userImg: req.user.profilePic.url,
+    image: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    },
+  });
 
   res.status(201).json({
     success: true,
@@ -18,19 +46,27 @@ exports.createRecipe = catchAsyncErrors(async (req, res, next) => {
 
 //Get all recipes
 exports.getAllRecipes = catchAsyncErrors(async (req, res) => {
-  const postsPerPage = 10;
+  const postsPerPage = 6;
+  const recipeCount = await Recipe.countDocuments();
 
   const apiFeatures = new ApiFeatures(Recipe.find(), req.query)
     .search()
     .filter()
+    .pagination(postsPerPage);
   let recipes = await apiFeatures.query;
 
   let filteredCount = recipes.length;
 
+  // apiFeatures.pagination(postsPerPage);
+
+  // recipes = await apiFeatures.query.clone();
+
   res.status(200).json({
     success: true,
     recipes,
-    filteredCount
+    filteredCount,
+    postsPerPage,
+    recipeCount
   });
 });
 
@@ -84,44 +120,6 @@ exports.deleteRecipe = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//add like
-exports.addLike = catchAsyncErrors(async (req, res, next) => {
-  const recipe = await Recipe.findById(req.body.recipeId);
-
-  const like = {
-    user: req.user._id,
-    name: req.user.name,
-  };
-
-  recipe.likes.push(like);
-  recipe.likeCount = recipe.likes.length;
-
-  await recipe.save({ validateBeforeSave: false });
-
-  res.status(200).json({
-    success: true,
-  });
-});
-
-//unlike
-exports.unLike = catchAsyncErrors(async (req, res, next) => {
-  const recipe = await Recipe.findById(req.body.recipeId);
-
-  const like = {
-    user: req.user._id,
-    name: req.user.name,
-  };
-
-  recipe.likes.pull(like);
-  recipe.likeCount = recipe.likes.length - 1;
-
-  await recipe.save({ validateBeforeSave: false });
-
-  res.status(200).json({
-    success: true,
-  });
-});
-
 //add comment
 exports.addComment = catchAsyncErrors(async (req, res, next) => {
   const { message, recipeId } = req.body;
@@ -160,7 +158,6 @@ exports.getComments = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 //get my posts
 exports.getMyRecipes = catchAsyncErrors(async (req, res, next) => {
   const uId = req.user._id;
@@ -169,7 +166,9 @@ exports.getMyRecipes = catchAsyncErrors(async (req, res, next) => {
   const myRecipes = await Recipe.find({ user: uId });
 
   if (!myRecipes) {
-    return next(new ErrorHandler("Recipes not found for the specified user", 404));
+    return next(
+      new ErrorHandler("Recipes not found for the specified user", 404)
+    );
   }
 
   res.status(200).json({
@@ -186,11 +185,54 @@ exports.getUserRecipes = catchAsyncErrors(async (req, res, next) => {
   const userRecipes = await Recipe.find({ user: uId });
 
   if (!userRecipes) {
-    return next(new ErrorHandler("Recipes not found for the specified user", 404));
+    return next(
+      new ErrorHandler("Recipes not found for the specified user", 404)
+    );
   }
 
   res.status(200).json({
     success: true,
     userRecipes,
+  });
+});
+
+
+
+
+//add like
+exports.addLike = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.body.recipeId);
+
+  const like = {
+    user: req.user._id,
+    name: req.user.name,
+  };
+
+  recipe.likes.push(like);
+  recipe.likeCount = recipe.likes.length;
+
+  await recipe.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+//unlike
+exports.unLike = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.body.recipeId);
+
+  const like = {
+    user: req.user._id,
+    name: req.user.name,
+  };
+
+  recipe.likes.pull(like);
+  recipe.likeCount = recipe.likes.length - 1;
+
+  await recipe.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
   });
 });

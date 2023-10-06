@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Profile.css";
 import ProfileRecipeCard from "./ProfileRecipeCard.js";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors } from "../../actions/userAction";
+import { clearErrors, getSavedRecipes } from "../../actions/userAction";
 import { getMyRecipes } from "../../actions/recipeAction";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader/Loader";
@@ -13,8 +13,12 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, error, loading = true, isAuthenticated } = useSelector((state) => state.user);
+  const { user, error, loading=true, isAuthenticated } = useSelector((state) => state.user);
   const { myRecipes } = useSelector((state) => state.myRecipes);
+
+  const getSavedHandler = () => {
+    dispatch(getSavedRecipes())
+  }
 
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -39,6 +43,7 @@ const Profile = () => {
               <h4>{user.name}</h4>
               <p>{user.bio}</p>
               <Link to="/mydetails/update">Edit Profile</Link>
+              <Link to="/profile/saved" onClick={getSavedHandler}>Saved Posts</Link>
             </div>
 
             <div className="post-info">
@@ -53,7 +58,7 @@ const Profile = () => {
                   ))
                 )}
 
-                <Link className="create-post">Create Post</Link>
+                <Link className="create-post" to="/recipe/new">Create Post</Link>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@
 .loading > div {
     width: 10vmax;
     height: 10vmax;
-    border-bottom: 5px solid rgba(77, 66, 78, 0.523);
+    border-bottom: 8px solid rgba(204, 50, 26, 0.523);
 
     border-radius: 50%;
 
@@ -19,6 +19,6 @@
 
 @keyframes loadingRotate {
     to {
-        transform: rotateZ(-360deg);
+        transform: rotateZ(360deg);
     }
 }

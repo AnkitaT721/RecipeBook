@@ -33,6 +33,7 @@ const LoginSignup = () => {
     name: "",
     email: "",
     password: "",
+    bio: "",
   });
 
   const { name, email, password, bio } = user;
@@ -126,7 +127,7 @@ const LoginSignup = () => {
                 <div className="loginEmail">
                   <AiOutlineMail />
                   <input
-                    type="ema il"
+                    type="email"
                     placeholder="Email"
                     required
                     value={loginEmail}

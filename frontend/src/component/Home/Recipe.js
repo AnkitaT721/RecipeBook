@@ -18,10 +18,6 @@ const Recipe = ({ recipe }) => {
       </div>
       <div className="like-comment">
         <p>
-          <AiOutlineHeart />
-          <span>{recipe.likeCount}</span>
-        </p>
-        <p>
           <BiCommentDetail />
           <span>{recipe.numOfComments}</span>
         </p>

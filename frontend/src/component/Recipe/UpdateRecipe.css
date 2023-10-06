@@ -1,0 +1,100 @@
+#deleteRecipeBtn {
+  padding: 0.6vmax 2vmax;
+  background-color: #bf2c2c;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 3px rgba(157, 52, 52, 0.526);
+  border: none;
+  margin-left: 1.6vmax;
+}
+
+#deleteRecipeBtn:hover {
+  background-color: #952424;
+}
+
+#updateRecipeBtn {
+  padding: 0.6vmax 2vmax;
+  background-color: #bf2c2c;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 3px rgba(157, 52, 52, 0.526);
+  border: none;
+  margin-left: 5vmax;
+  margin-right: 0.6vmax;
+}
+
+#updateRecipeBtn:hover {
+  background-color: #952424;
+}
+
+.editBtn {
+  display: flex;
+  justify-content: center
+}
+
+.updateRecipeForm {
+  width: 32vmax;
+  height: 44vmax;
+  display: flex;
+  justify-content: center;
+  margin-top: 1vmax;
+  margin-left: 25vmax;
+  margin-right: 25vmax;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  margin-bottom: 1.4vmax;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 10px rgb(119, 118, 117);
+}
+
+.updateForm h4 {
+  font-size: large;
+  margin-bottom: 0.4vmax;
+}
+
+.updateForm div {
+  margin-top: 1vmax;
+  margin-left: 2vmax;
+}
+
+.updateForm input {
+  width: 100%;
+  padding: 0.6vmax 3vmax;
+  cursor: pointer;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 6px;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+.updateForm select {
+  width: 100%;
+  padding: 0.6vmax 3vmax;
+  cursor: pointer;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 6px;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+.updateForm textarea {
+  width: 100%;
+  padding: 0.6vmax 3vmax;
+  cursor: pointer;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 6px;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+  font-family: "Roboto";
+}

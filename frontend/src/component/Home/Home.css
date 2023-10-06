@@ -99,15 +99,9 @@
     display: flex;
 }
 
-.like-comment p:last-child {
-    padding-left: 4vmax;
+.like-comment p {
+    padding-left: 1vmax;
     color: rgb(4, 131, 42);
-    margin-top: 8px;
-    margin-bottom: 4px;
-}
-
-.like-comment p:first-child {
-    color: rgb(186, 9, 9);
     margin-top: 8px;
     margin-bottom: 4px;
 }

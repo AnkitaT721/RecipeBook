@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../../images/logo.png";
 import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BiSolidUserCircle } from "react-icons/bi";
@@ -11,17 +12,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../actions/userAction";
 
 const Navbar = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const {isAuthenticated} = useSelector((state) => state.user)
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const logoutUserHandler = () => {
     dispatch(logout());
     navigate("/");
-    toast.success("Logged out successfully")
-  }
+    toast.success("Logged out successfully");
+  };
 
   const [showMenu, setShowMenu] = useState(false);
   return (
@@ -34,16 +35,54 @@ const Navbar = () => {
         <div className={showMenu ? "menu-link mobile-menu-link" : "menu-link"}>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                className={location.pathname === "/" ? "active-link" : ""}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/recipes">Recipes</Link>
+              <NavLink
+                to="/recipes"
+                className={
+                  location.pathname === "/recipes" ? "active-link" : ""
+                }
+              >
+                Recipes
+              </NavLink>
             </li>
             <li>
-              <Link to="/">Contact</Link>
+              <NavLink
+                to="/contact"
+                className={
+                  location.pathname === "/contact" ? "active-link" : ""
+                }
+              >
+                Contact
+              </NavLink>
             </li>
             <li>
-              <Link to="/">About</Link>
+              <NavLink
+                to="/about"
+                className={location.pathname === "/about" ? "active-link" : ""}
+              >
+                About
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to={isAuthenticated ? "/recipe/new" : "/login"}
+                className={
+                  location.pathname ===
+                  (isAuthenticated ? "/recipe/new" : "/login")
+                    ? "active-link"
+                    : ""
+                }
+              >
+                Create
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -51,36 +90,42 @@ const Navbar = () => {
         <div className="profile">
           <ul className="profile-desktop">
             <li>
-              <Link to="/search">
+              <NavLink to="/search" activeClassName="active-link">
                 <FiSearch />
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/login">
+              <NavLink to="/login" activeClassName="active-link">
                 <BiSolidUserCircle className="user" />
-              </Link>
+              </NavLink>
             </li>
 
             <li>
-              <Link to="/">
-                <FiLogOut className={isAuthenticated ? "logout" : "no-logout"} onClick={logoutUserHandler}/>
-              </Link>
+              <NavLink to="/" activeClassName="active-link">
+                <FiLogOut
+                  className={isAuthenticated ? "logout" : "no-logout"}
+                  onClick={logoutUserHandler}
+                />
+              </NavLink>
             </li>
           </ul>
 
           <div className="hamburger">
-            <Link onClick={() => setShowMenu(!showMenu)}>
+            <NavLink onClick={() => setShowMenu(!showMenu)}>
               <GiHamburgerMenu />
-            </Link>
-            <Link to="/search">
-                <FiSearch />
-              </Link>
-            <Link to="/login">
+            </NavLink>
+            <NavLink to="/search">
+              <FiSearch />
+            </NavLink>
+            <NavLink to="/login">
               <BiSolidUserCircle />
-            </Link>
-            <Link to="/">
-            <FiLogOut className={isAuthenticated ? "logout" : "no-logout"} onClick={logoutUserHandler}/>
-            </Link>
+            </NavLink>
+            <NavLink to="/">
+              <FiLogOut
+                className={isAuthenticated ? "logout" : "no-logout"}
+                onClick={logoutUserHandler}
+              />
+            </NavLink>
           </div>
         </div>
       </nav>

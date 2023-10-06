@@ -98,6 +98,18 @@ const recipeSchema = new mongoose.Schema({
     required: true,
   },
 
+  userBio: {
+    type: String,
+    ref: "User",
+    required: true,
+  },
+
+  userImg: {
+    type: String,
+    required: true,
+    ref: "User",
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

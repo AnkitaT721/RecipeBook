@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { clearErrors, getRecipes } from "../../actions/recipeAction.js";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
+import Pagination from "react-js-pagination";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 
@@ -32,10 +33,15 @@ const types = ["veg", "non-veg"];
 const Recipes = () => {
   const { keyword } = useParams();
   const dispatch = useDispatch();
-  const { loading, error, recipes, recipeCount } = useSelector((state) => state.recipes);
+  const { loading, error, recipes, filteredCount, postsPerPage, recipeCount } = useSelector((state) => state.recipes);
 
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const setCurrentPageNo = (e) => {
+    setCurrentPage(e);
+  };
 
   useEffect(() => {
     if (error) {
@@ -43,15 +49,15 @@ const Recipes = () => {
       dispatch(clearErrors());
     }
 
-    dispatch(getRecipes(keyword, category, type));
-  }, [dispatch, error, keyword, category, type]);
+    dispatch(getRecipes(keyword, currentPage, category, type));
+  }, [dispatch, error, keyword, category, type, currentPage]);
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
     <>
-    <MetaData heading="Recipe Diary--All Recipes" />
+    <MetaData heading={`All Recipes(${currentPage})`} />
       <div className="all-recipes">
         <div className="side-bar">
           <h3 className="filter-heading">Filter Recipes</h3>
@@ -94,9 +100,26 @@ const Recipes = () => {
             {recipes && recipes.map((recipe) => <RecipeCard recipe={recipe} />)}
           </div>
           <h2 className="no-recipes">
-            {recipeCount === 0
+            {filteredCount === 0
               ? "No Recipes Found!" : ''}
           </h2>
+
+          <div className="paginationBox">
+            <Pagination
+              activePage={currentPage}
+              itemsCountPerPage={postsPerPage}
+              totalItemsCount={recipeCount}
+              onChange={setCurrentPageNo}
+              nextPageText="Next"
+              prevPageText="Prev"
+              firstPageText="1st"
+              lastPageText="Last"
+              itemClass="page-item"
+              linkClass="page-link"
+              activeClass="pageItemActive"
+              activeLinkClass="pageLinkActive"
+            />
+          </div>
         </div>
       </div>
     </>

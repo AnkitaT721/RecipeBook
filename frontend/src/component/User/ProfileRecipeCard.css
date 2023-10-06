@@ -29,6 +29,7 @@
 
 .recipeinfo {
   display: flex;
+  padding-right: 3vmax;
 }
 
 .recipeTitle {
@@ -82,9 +83,9 @@
 }
 
 .optionsMenu button {
-  width: 80%;
+  width: 100%;
   margin: 4px;
-  padding: 5px;
+  padding: 7px;
   border-radius: 4px;
   border: 2px solid white;
   font-weight: 500;
@@ -96,4 +97,16 @@
 
 .optionsMenu button:hover {
   background-color: #892424;
+}
+
+#remove-save {
+  margin-left: 27.2vmax;
+  margin-top: 0.6vmax;
+  cursor: pointer;
+  font-size: 2vmax;
+}
+
+#remove-save:hover {
+  background-color: rgba(209, 204, 204, 0.64);
+  border-radius: 50%;
 }

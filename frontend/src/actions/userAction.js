@@ -18,6 +18,15 @@ import {
   RESET_PASSWORD_FAIL,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
+  SAVED_RECIPES_FAIL,
+  SAVED_RECIPES_REQUEST,
+  SAVED_RECIPES_SUCCESS,
+  SAVE_FAIL,
+  SAVE_REQUEST,
+  SAVE_SUCCESS,
+  UNSAVE_FAIL,
+  UNSAVE_REQUEST,
+  UNSAVE_SUCCESS,
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
@@ -92,7 +101,7 @@ export const updateProfile = (userData) => async (dispatch) => {
     const config = { headers: { "content-type": "multipart/form-data" } };
 
     const { data } = await axios.put(
-      `/api/v1//mydetails/update`,
+      `/api/v1/mydetails/update`,
       userData,
       config
     );
@@ -141,6 +150,64 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: RESET_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
+
+
+
+
+
+//save recipes
+export const saveRecipes = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: SAVE_REQUEST });
+
+    const { data } = await axios.put(
+      `/api/v1/save/${id}`,
+    );
+
+    dispatch({ type: SAVE_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: SAVE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//unsave recipes
+export const unsaveRecipes = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: UNSAVE_REQUEST });
+
+    const { data } = await axios.put(
+      `/api/v1/deletesaved/${id}`,
+    );
+
+    dispatch({ type: UNSAVE_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: UNSAVE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//get saved recipes
+export const getSavedRecipes = () => async (dispatch) => {
+  try {
+    dispatch({ type: SAVED_RECIPES_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/getsaved`);
+
+    dispatch({ type: SAVED_RECIPES_SUCCESS, payload: data.savedRecipes });
+  } catch (error) {
+    dispatch({
+      type: SAVED_RECIPES_FAIL,
       payload: error.response.data.message,
     });
   }

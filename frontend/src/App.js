@@ -12,6 +12,13 @@ import Profile from "./component/User/Profile.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
+import NewRecipe from "./component/Recipe/NewRecipe.js";
+import UpdateRecipe from "./component/Recipe/UpdateRecipe.js";
+import SavedRecipes from "./component/Recipe/SavedRecipes.js";
+import UserRecipes from "./component/Recipe/UserRecipes.js";
+import About from "./component/layout/About/About.js";
+import Contact from "./component/layout/Contact/Contact.js";
+import NotFound from "./component/layout/NotFound/NotFound.js";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import { useSelector } from "react-redux";
@@ -35,6 +42,9 @@ function App() {
           <Route path="/recipes/:keyword" element={<Recipes />} />
 
           <Route path="/search" element={<Search />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
 
           <Route path="/login" element={<LoginSignup />} />
 
@@ -43,6 +53,12 @@ function App() {
 
           <Route path="/password/forgot" element={<ForgotPassword />} />
           <Route path="/password/reset/:token" element={<ResetPassword />} />
+
+          <Route path="/recipe/new" element={<NewRecipe />} />
+          <Route path="profile/update/:id" element={<UpdateRecipe />} />
+          <Route path="/profile/saved" element={<SavedRecipes />} />
+
+          <Route path="/profile/:id" element={<UserRecipes />} />
 
           {/* <Route element={isAuthenticated && <ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/profile" element={<Profile />} />

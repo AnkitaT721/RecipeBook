@@ -189,13 +189,24 @@ exports.updateUserDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+
+
+
+
 //save recipes
 exports.saveRecipes = catchAsyncErrors(async (req, res, next) => {
-  const recipe = await Recipe.findById(req.query.recipeId);
+  const recipe = await Recipe.findById(req.params.id);
 
   const user = await User.findById(req.user.id);
 
-  user.recipes.push(recipe);
+  user.recipes.push({
+    recipe: recipe._id,
+    recipeName: recipe.title,
+    recipeImg: recipe.image.url,
+    recipeCate: recipe.category,
+    recipeType: recipe.type,
+    recipeServe: recipe.serves
+  });
 
   await user.save({ validateBeforeSave: false });
 
@@ -203,3 +214,43 @@ exports.saveRecipes = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 })
+
+//Delete saved recipe
+exports.unSave = catchAsyncErrors(async (req, res, next) => {
+  const recipe = await Recipe.findById(req.params.id);
+
+  const user = await User.findById(req.user.id);
+
+  user.recipes.pull({
+    recipe: recipe._id,
+    recipeName: recipe.title,
+    recipeImg: recipe.image.url,
+    recipeCate: recipe.category,
+    recipeType: recipe.type,
+    recipeServe: recipe.serves
+  });
+
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+
+//get saved recipes
+exports.getSavedRecipes = catchAsyncErrors(async(req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  if(!user) {
+    return next(new ErrorHandler("No User Found", 404));
+  }
+
+  const savedRecipes = user.recipes
+
+  res.status(200).json({
+    success: true,
+    savedRecipes
+  });
+})
+

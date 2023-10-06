@@ -1,0 +1,115 @@
+.createRecipeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createRecipeContainer h2 {
+  text-align: center;
+  margin-top: 1vmax;
+}
+
+.createRecipeContainer span {
+  color: #a41b1b;
+}
+
+.createRecipeForm {
+  width: 38vmax;
+  height: 53vmax;
+  display: flex;
+  justify-content: center;
+  margin-top: 1vmax;
+  margin-left: 25vmax;
+  margin-right: 25vmax;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  margin-bottom: 1.4vmax;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 10px rgb(119, 118, 117);
+}
+
+
+.createForm h4 {
+  font-size: large;
+  margin-bottom: 0.4vmax;
+}
+
+.createForm div {
+  margin-top: 1vmax;
+  margin-left: 2.8vmax;
+}
+
+.createForm input {
+  width: 100%;
+  padding: 0.6vmax 3vmax;
+  cursor: pointer;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 6px;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+.createForm select {
+  width: 100%;
+  padding: 0.6vmax 3vmax;
+  cursor: pointer;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 6px;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+.createForm textarea {
+  width: 100%;
+  padding: 0.6vmax 3vmax;
+  cursor: pointer;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 6px;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+  font-family: "Roboto";
+}
+
+#uploadRecipeImage input::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  margin-right: 3vmax;
+  font-weight: 400;
+  font-size: 0.8vmax;
+  font-family: "Roboto";
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+#uploadRecipeImage img {
+  width: 4vmax;
+  margin-top: 1vmax;
+}
+
+#createRecipeBtn {
+  padding: 0.6vmax 2vmax;
+  background-color: #bf2c2c;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 3px rgba(157, 52, 52, 0.526);
+  border: none;
+  margin-left: 15.4vmax;
+}
+
+#createRecipeBtn:hover {
+    background-color: #952424;
+  }
+
+  #createRecipeBtn:disabled {
+    background-color: #bf2c2c6c;
+  }
