@@ -31,7 +31,7 @@ const Home = () => {
           </div>
 
           <h2 className="heading-1">
-            Top<span> Recipes</span>
+            Featured<span> Recipes</span>
           </h2>
 
           <div className="container" id="container">

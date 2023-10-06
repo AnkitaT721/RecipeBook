@@ -3,11 +3,13 @@ import "./AllUsers.css";
 import UserCard from "./UserCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../actions/userAction";
+import Loader from "../layout/Loader/Loader";
+import MetaData from "../layout/MetaData";
 
 const AllUsers = () => {
   const dispatch = useDispatch();
 
-  const { users } = useSelector((state) => state.allUsers);
+  const { users, loading } = useSelector((state) => state.allUsers);
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -15,6 +17,11 @@ const AllUsers = () => {
 
   return (
     <>
+      {loading ? (
+        <Loader />
+      ) : (
+    <>
+    <MetaData heading={`Recipe Diary--All Users`} />
       <div className="user-info">
         <h1>
           All <span>Users</span>
@@ -27,6 +34,8 @@ const AllUsers = () => {
           )}
         </div>
       </div>
+    </>
+    )}
     </>
   );
 };

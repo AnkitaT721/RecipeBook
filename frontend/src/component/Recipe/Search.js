@@ -19,7 +19,7 @@ const Search = () => {
 
   return (
     <>
-    <MetaData title="Recipe Diary--Search" />
+    <MetaData heading="Recipe Diary--Search" />
       <form className="searchBox" onSubmit={searchSubmitHandler}>
         <input
           type="text"
