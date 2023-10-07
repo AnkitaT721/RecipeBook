@@ -198,14 +198,24 @@
   margin-top: 0.8vmax;
 }
 
-.user-name{
+.details-4 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-name {
   text-decoration: none;
   margin-left: 0.8vmax;
   color: rgb(112, 111, 111);
   font-size: 1.2vmax;
 }
 
-.user-name:hover{
+.user-name:hover {
   color: rgb(3, 3, 3);
   transition: all 0.2s ease;
+}
+
+.createdAt {
+  color: rgb(112, 111, 111);
+  font-size: 1.2vmax;
 }

@@ -36,7 +36,7 @@ const SavedRecipeCard = ({ recipe }) => {
             id="remove-save"
             onClick={() => {
               dispatch(unsaveRecipes(id));
-              // document.location.reload();
+              document.location.reload();
               toast.success("Removed from saved!!");
             }}
           />

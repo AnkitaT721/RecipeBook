@@ -162,9 +162,12 @@ const RecipeDetails = () => {
                 <h3>Cooking Process:</h3>
                 <p style={{ whiteSpace: "pre-line" }}>{recipe.process}</p>
               </div>
+              <div className="details-4">
               <Link className="user-name" to={`/profile/${recipe.user}`}>
                 Created by {recipe.userName}
               </Link>
+              <p className="createdAt">{String(recipe.createdAt).substring(0, 10)}</p>
+              </div>
             </div>
           </div>
 
