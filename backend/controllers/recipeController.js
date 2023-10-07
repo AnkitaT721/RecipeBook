@@ -52,14 +52,13 @@ exports.getAllRecipes = catchAsyncErrors(async (req, res) => {
   const apiFeatures = new ApiFeatures(Recipe.find(), req.query)
     .search()
     .filter()
-    .pagination(postsPerPage);
   let recipes = await apiFeatures.query;
 
   let filteredCount = recipes.length;
 
-  // apiFeatures.pagination(postsPerPage);
+  apiFeatures.pagination(postsPerPage);
 
-  // recipes = await apiFeatures.query.clone();
+  recipes = await apiFeatures.query.clone();
 
   res.status(200).json({
     success: true,

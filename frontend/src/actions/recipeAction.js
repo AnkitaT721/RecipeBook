@@ -50,11 +50,6 @@ export const getRecipes =
 
       const { data } = await axios.get(link);
 
-      console.log("Category:", category);
-      console.log("Type:", type);
-
-      console.log(data);
-
       dispatch({
         type: ALL_RECIPE_SUCCESS,
         payload: data,
