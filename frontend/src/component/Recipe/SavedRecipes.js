@@ -4,7 +4,6 @@ import MetaData from "../layout/MetaData";
 import SavedRecipeCard from "./SavedRecipeCard.js";
 import Loader from "../layout/Loader/Loader";
 import { getSavedRecipes } from "../../actions/userAction";
-import { UNSAVE_RESET } from "../../constants/userConstants";
 
 const SavedRecipes = () => {
   const dispatch = useDispatch();

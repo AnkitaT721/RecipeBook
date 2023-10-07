@@ -39,7 +39,7 @@ function UpdateProfile() {
   };
 
   const updateProfileDataChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const reader = new FileReader();
 
     reader.onload = () => {

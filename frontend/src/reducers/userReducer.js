@@ -25,6 +25,7 @@ import {
   SAVED_RECIPES_SUCCESS,
   SAVE_FAIL,
   SAVE_REQUEST,
+  SAVE_RESET,
   SAVE_SUCCESS,
   UNSAVE_FAIL,
   UNSAVE_REQUEST,
@@ -216,10 +217,15 @@ export const saveRecipesReducer = (state = {}, action) => {
         isSaved: false,
       };
 
+      case SAVE_RESET:
+        return {
+          ...state,
+          isSaved: false,
+        };
+
     case UNSAVE_RESET:
       return {
         ...state,
-        loading: true,
         unSaved: true,
       };
 

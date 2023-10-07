@@ -60,3 +60,22 @@
   display: flex;
   align-items: center;
 }
+
+.search-container {
+  align-items: center;
+  margin-left: 2vmax;
+}
+
+.search-container input {
+  padding-right:  6vmax;
+  padding-left: 1vmax;
+  padding-top: 0.6vmax;
+  padding-bottom: 0.6vmax;
+  box-sizing: border-box;
+  border: 1px solid rgba(14, 14, 14, 0.267);
+  border-radius: 20px;
+  font-weight: 300;
+  font-size: 0.9vmax;
+  outline: none;
+  margin: 4px;
+}

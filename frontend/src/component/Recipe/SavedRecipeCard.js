@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { unsaveRecipes } from "../../actions/userAction";
@@ -36,7 +36,7 @@ const SavedRecipeCard = ({ recipe }) => {
             id="remove-save"
             onClick={() => {
               dispatch(unsaveRecipes(id));
-              document.location.reload();
+              // document.location.reload();
               toast.success("Removed from saved!!");
             }}
           />

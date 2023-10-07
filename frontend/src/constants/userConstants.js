@@ -36,6 +36,7 @@ export const RESET_PASSWORD_FAIL = "RESET_PASSWORD_FAIL";
 export const SAVE_REQUEST = "SAVE_REQUEST";
 export const SAVE_SUCCESS = "SAVE_SUCCESS";
 export const SAVE_FAIL = "SAVE_FAIL";
+export const SAVE_RESET = "SAVE_RESET";
 
 export const UNSAVE_REQUEST = "UNSAVE_REQUEST";
 export const UNSAVE_SUCCESS = "UNSAVE_SUCCESS";

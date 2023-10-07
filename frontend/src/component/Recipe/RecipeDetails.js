@@ -5,8 +5,6 @@ import { toast } from "react-toastify";
 import "./RecipeDetails.css";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiFillHeart } from "react-icons/ai";
 import { MdOutlineInsertComment } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
@@ -17,6 +15,7 @@ import {
 } from "../../actions/recipeAction";
 import { ADD_COMMENT_RESET } from "../../constants/recipeConstants";
 import { saveRecipes } from "../../actions/userAction";
+import { SAVE_RESET } from "../../constants/userConstants";
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -30,11 +29,13 @@ const RecipeDetails = () => {
     (state) => state.addComment
   );
 
-  const { user } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   const { success: saveSuccess, isSaved } = useSelector(
     (state) => state.saveRecipes
   );
+
+  const { error: saveError } = useSelector((state) => state.saveRecipes);
 
   const [message, setMessage] = useState("");
 
@@ -50,7 +51,10 @@ const RecipeDetails = () => {
   };
 
   const saveRecipeHandler = () => {
-    if (user.recipes.some((el) => el.recipe === recipe._id)) {
+    if (!isAuthenticated) {
+      toast.error(saveError);
+      dispatch(clearErrors());
+    } else if (user && user.recipes.some((el) => el.recipe === recipe._id)) {
       toast.error("Already Saved");
     } else {
       dispatch(saveRecipes(id));
@@ -73,6 +77,11 @@ const RecipeDetails = () => {
       dispatch(clearErrors());
     }
 
+    // if (saveError) {
+    //   toast.error(saveError);
+    //   dispatch(clearErrors());
+    // }
+
     if (success) {
       toast.success("Comment added successfully");
       setMessage("");
@@ -81,6 +90,8 @@ const RecipeDetails = () => {
     }
 
     dispatch(getRecipeDetails(id));
+
+    dispatch({ type: SAVE_RESET });
 
     window.scrollTo(0, 0);
   }, [dispatch, id, error, success, commentError, saveSuccess]);
